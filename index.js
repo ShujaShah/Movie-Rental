@@ -1,4 +1,5 @@
 const express = require('express');
+const asyncMiddleware = require('express-async-errors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -10,6 +11,7 @@ const MoviesRouter = require('./src/routes/movies');
 const RentalsRouter = require('./src/routes/rentals');
 const UsersRouter = require('./src/routes/users');
 const AuthRouter = require('./src/routes/auth');
+const ErrorHandler = require('./src/middlewares/error');
 
 var app = express();
 app.use(express.json());
@@ -28,6 +30,7 @@ app.use('/api/movies', MoviesRouter);
 app.use('/api/rentals', RentalsRouter);
 app.use('/api/users', UsersRouter);
 app.use('/api/auth', AuthRouter);
+app.use(ErrorHandler);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

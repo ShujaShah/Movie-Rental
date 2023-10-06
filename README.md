@@ -22,7 +22,9 @@ Where we define the div in the index.html file whose id we set to root, and with
 <h2>How is React different than a vanilla Javascript?</h2>
 In react we like code like this:
 
-```ReactDOM.render(<h1 className="header">Hello, React!</h1>, document.getElementById("root"))```
+```
+ReactDOM.render(<h1 className="header">Hello, React!</h1>, document.getElementById("root"))
+```
 This is an declarative way of coding…
 While as the same code to be written in vanilla javascript involves many lines of code
 
@@ -33,3 +35,50 @@ document.getElementById(‘root’).append(h1)
 ```
 
 With this approach even if we add more elements you can see how many lines of code are going to be added and how complex the things would be.
+
+<h2>Why do we need `import React from “react”`?</h2>
+<p>React is what defines JSX, so in order to use  JSX we need to import React.</p>
+
+<h2>What are Components?</h2>
+<p>Components are basically functions which return react elements. We can use over and over again thus helping in code reusability. React allows us to create the functions for the user interfaces that we can use over and over again. We use Pascal Case while naming the components i.e., Capitalise the first letter of the name. Also Components help us to organise the code 
+We define functions/ components as :</p>
+
+```
+function MyComponent(){
+	return(
+		<div>
+			Some code
+		</div>
+  )
+}
+```
+And then use Component as:
+```
+ReactDOM.render(<MyComponent />, document.getElementById(‘root’))
+```
+
+<h2>What are Parent Components and Child Components?</h2>
+<p>Parent Components are those components in which we render other components and those components are called Child Components. In below example, Page is a Parent Component while as Header, Main Content and Footer are the child components. </p>
+
+```
+function Page() {
+    return (
+        <div>
+            <Header />
+            <MainContent />
+            <Footer />
+        </div>
+    )
+}
+```
+
+<h2>How do we Style React Components?</h2>
+<p>In React we use className instead of class and rest is same as we use in normal html and CSS e.g.,
+
+```
+<nav className="nav">
+```
+And then in CSS we can give the styling to the nav class</p>
+
+<h2>::marker Pseudo element</h2>
+<p>This pseudo element is used to select the box of a list item, which typically contains the bulls or number. This property is used to target the list items like changing the colour and resizing the font size.</p>

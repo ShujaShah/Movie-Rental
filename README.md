@@ -82,3 +82,39 @@ And then in CSS we can give the styling to the nav class</p>
 
 <h2>::marker Pseudo element</h2>
 <p>This pseudo element is used to select the box of a list item, which typically contains the bulls or number. This property is used to target the list items like changing the colour and resizing the font size.</p>
+
+<h2>What are Props?</h2>
+<p>Props are the properties or attributes, that help us to reuse the components.  Props are the inputs or arguments to a component. Props are immutable(read only). Anytime there is a change in the Props, React re renders the component and updates the DOM accordingly. 
+<p>Syntax of Props are:</p>
+<b>Passing Props into a component:</b>
+</p>
+
+```
+<Contact 
+                img="./images/mr-whiskerson.png" 
+                name="Mr. Whiskerson"
+                phone="(212) 555-1234"
+                email="mr.whiskaz@catnap.meow"
+            />
+```
+<b>Receiving Props in Component</b>
+
+```
+export default function Contact(
+    return (
+        <div className="contact-card">
+            <img src={props.img}/>
+            <h3>{props.name}</h3>
+            <div className="info-group">
+                <img src="./images/phone-icon.png" />
+                <p>{props.phone}</p>
+            </div>
+            <div className="info-group">
+                <img src="./images/mail-icon.png" />
+                <p>{props.email}</p>
+            </div>
+        </div>
+    )
+}
+```
+<p><i>Here Img, name, phone and email are the props</i></p>

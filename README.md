@@ -118,3 +118,13 @@ export default function Contact(
 }
 ```
 <p><i>Here Img, name, phone and email are the props</i></p>
+
+<h2>What does the `.map()` array method do?</h2>
+<p>Returns a new array. Whatever gets returned from the callback function provided is placed at the same index in the new array.
+Usually we take the items from the original array and modify them in some way</p>
+
+<h2>What do we usually use `.map()` for in React?</h2>
+<p>Convert an array of raw data into an array of JSX elements that can be displayed on the page. </p>
+
+<h2>Why is using `.map()` better than just creating the components manually by typing them out?</h2>
+<p>It makes our code more "self-sustaining" - not requiring additional changes whenever the data changes.</p>

@@ -130,6 +130,7 @@ Usually we take the items from the original array and modify them in some way</p
 <p>It makes our code more "self-sustaining" - not requiring additional changes whenever the data changes.</p>
 
 <h2> What is the difference between Props and State?</h2>
+<h4>Props:</h4>
 <p> Props refers to the properties which are passed to the component in order for it to work correctly. It is similar to how function receives the parameters. **Props** are immutable i.e., a Component that receives the props is not allowed to modify the props.<br>
 Lets take a look at the below function.
 
@@ -144,5 +145,7 @@ However, if we explicity define the value of a or be like a = 45; and then retur
 Thus, even though we are expecting a result 13 we would get 53 which is not correct.
 Thus this way we create our Components reusable.
 </p>
-
-
+<h4>State: </h4>
+<p>
+State referes to the values that are managed by the component just like the variables that are declared inside the function. Anytime you have changing values that should be displayed or saved, you should use State. State is mutable unlike Props.
+</p>

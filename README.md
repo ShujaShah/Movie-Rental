@@ -142,6 +142,7 @@ Lets take a look at the below function.
 In the above function we add two number 5 and 8 by passing it to the function as parameters. Our result would be 13.
 However, if we explicity define the value of a or be like a = 45; and then return the a + b, the result for the addTwoNumbers(5, 8) would be 53.
 Thus, even though we are expecting a result 13 we would get 53 which is not correct.
+Thus this way we create our Components reusable.
 </p>
 
 

@@ -132,14 +132,13 @@ Usually we take the items from the original array and modify them in some way</p
 <h2> What is the difference between Props and State?</h2>
 <p> Props refers to the properties which are passed to the component in order for it to work correctly. It is similar to how function receives the parameters. **Props** are immutable i.e., a Component that receives the props is not allowed to modify the props.<br>
 Lets take a look at the below function.
-	
-	```
+
+ ```
 	function addTwoNumbers(a, b){
 		retun a + b;
 	}
 	addTwoNumbers(5, 8);
-
- 	```
+ ```
 In the above function we add two number 5 and 8 by passing it to the function as parameters. Our result would be 13.
 However, if we explicity define the value of a or be like a = 45; and then return the a + b, the result for the addTwoNumbers(5, 8) would be 53.
 Thus, even though we are expecting a result 13 we would get 53 which is not correct.

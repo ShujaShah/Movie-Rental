@@ -129,6 +129,12 @@ Usually we take the items from the original array and modify them in some way</p
 <h2>Why is using `.map()` better than just creating the components manually by typing them out?</h2>
 <p>It makes our code more "self-sustaining" - not requiring additional changes whenever the data changes.</p>
 
+<h2>What is State in React?</h2>
+<p>State in React is the way through which we can update the components.
+We use React.useState(); to use the state hook. Whatever we put inside of the parenthesis is the first value or initial value of the state.
+	State is an array with two values: [initial value, Function].
+</p>
+
 <h2> What is the difference between Props and State?</h2>
 <h4>Props:</h4>
 <p> Props refers to the properties which are passed to the component in order for it to work correctly. It is similar to how function receives the parameters. **Props** are immutable i.e., a Component that receives the props is not allowed to modify the props.<br>

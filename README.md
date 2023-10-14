@@ -155,3 +155,8 @@ Thus this way we create our Components reusable.
 <p>
 State referes to the values that are managed by the component just like the variables that are declared inside the function. Anytime you have changing values that should be displayed or saved, you should use State. State is mutable unlike Props.
 </p>
+
+<h2>How do you pass the data from one component to the other?</h2>
+<p>We Cannot directly pass the state from one component to another. We cannot even Pass the data from One Sibling to another Sibling Component.
+In order to Pass the data from one Component to another <strong>We lift the state up to the nearest parent</strong>. And then from the parent to the Sibling components we pass the data through the props.
+</p>

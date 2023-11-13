@@ -26,6 +26,13 @@ const movieSchema = new mongoose.Schema({
     min: 0,
     max: 255,
   },
+  movieBanner: {
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
@@ -37,6 +44,7 @@ function validateMovie(movie) {
     genre: Joi.string().required(),
     numberInStock: Joi.number().min(0),
     dailyRentalRate: Joi.number().min(0),
+    movieBanner: Joi.string(),
   });
   return schema.validate(movie);
 }

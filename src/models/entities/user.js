@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
+const Customer = require('./customer');
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -23,8 +24,18 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 3,
   },
-  isAdmin: {
-    type: Boolean,
+  role: {
+    type: String,
+    enum: ['admin', 'user'],
+    default: 'user',
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  customerRef: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Customer',
   },
 });
 
@@ -32,7 +43,7 @@ userSchema.methods.generateAuthToken = function () {
   const token = jwt.sign(
     {
       _id: this._id,
-      isAdmin: this.isAdmin,
+      role: this.role,
     },
     process.env.JWTPrivateKey,
     { expiresIn: '35d' }
@@ -50,6 +61,7 @@ function validateUser(user) {
       .required(),
     name: Joi.string().min(3).required(),
     password: Joi.string().min(3).required(),
+    customerRef: Joi.string(),
   });
   return schema.validate(user);
 }

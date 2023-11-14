@@ -24,6 +24,7 @@ const CreateMovie = async (req, res) => {
     },
     numberInStock: req.body.numberInStock,
     dailyRentalRate: req.body.dailyRentalRate,
+    movieBanner: req.body.movieBanner,
   });
   movie = await movie.save();
   res.status(201).send(movie);

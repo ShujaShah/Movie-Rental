@@ -4,7 +4,8 @@ const { Genre, validateGenre } = require('../models/entities/genre');
 //Get All Genres
 const GetGenres = async (req, res) => {
   const genres = await Genre.find().sort('name');
-  res.status(201).send(genres);
+  let genreCount = await Genre.countDocuments();
+  res.status(201).json({ genres, genreCount });
 };
 
 //Create a Genre

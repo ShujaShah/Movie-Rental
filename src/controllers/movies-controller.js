@@ -5,9 +5,19 @@ const { Genre } = require('../models/entities/genre');
 const router = express.Router();
 
 //Get all Movies
+// const GetMovies = async (req, res) => {
+//   const movies = await Movie.find().sort('name');
+//   res.status(201).send(movies);
+// };
+
+// Get all movies including query based filtering for genres
 const GetMovies = async (req, res) => {
-  const movies = await Movie.find().sort('name');
-  res.status(201).send(movies);
+  const genreFilter = req.query.genre;
+  // Construct the query based on whether a genre filter is provided
+  const query = genreFilter ? { 'genre._id': genreFilter } : {};
+
+  const movies = await Movie.find(query).sort('name');
+  res.status(200).json(movies);
 };
 
 //Create a Movie

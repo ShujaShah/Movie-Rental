@@ -17,7 +17,15 @@ const GetMovies = async (req, res) => {
   const query = genreFilter ? { 'genre._id': genreFilter } : {};
 
   const movies = await Movie.find(query).sort('name');
-  res.status(200).json(movies);
+
+  //calculate the movie count as per filter or no filter
+  let movieCount;
+  if (genreFilter) {
+    movieCount = await Movie.countDocuments({ 'genre._id': genreFilter });
+  } else {
+    movieCount = await Movie.countDocuments();
+  }
+  res.status(200).json({ movies, movieCount });
 };
 
 //Create a Movie

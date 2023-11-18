@@ -13,18 +13,28 @@ const router = express.Router();
 // Get all movies including query based filtering for genres
 const GetMovies = async (req, res) => {
   const genreFilter = req.query.genre;
-  // Construct the query based on whether a genre filter is provided
-  const query = genreFilter ? { 'genre._id': genreFilter } : {};
+  const searchQuery = req.query.search;
+
+  // Construct the base query based on the genre filter
+  const baseQuery = genreFilter ? { 'genre._id': genreFilter } : {};
+
+  // Add the search filter to the base query if a search term is provided
+  const query = searchQuery
+    ? { ...baseQuery, $or: [{ title: { $regex: searchQuery, $options: 'i' } }] }
+    : baseQuery;
+
+  console.log('Query:', query);
 
   const movies = await Movie.find(query).sort('name');
 
-  //calculate the movie count as per filter or no filter
+  // Calculate the movie count as per the filter or no filter
   let movieCount;
   if (genreFilter) {
     movieCount = await Movie.countDocuments({ 'genre._id': genreFilter });
   } else {
     movieCount = await Movie.countDocuments();
   }
+
   res.status(200).json({ movies, movieCount });
 };
 

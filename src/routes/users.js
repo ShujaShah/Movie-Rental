@@ -28,28 +28,36 @@ router.post('/', async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
   if (user)
     return res.status(400).send('user with the given email already exists');
-  const customer = await Customer.findById(req.body.customerRef);
-  if (!customer)
-    return res.status(404).send('Customer with given id not found');
+  // let customer = await Customer.findById(req.body.customerRef);
+  // if (!customer)
+  //   return res.status(404).send('Customer with given id not found');
 
   // create the user...
   user = new User({
     email: req.body.email,
     name: req.body.name,
     password: req.body.password,
-    //customerRef: req.body.customerRef,
-    customerRef: {
-      _id: customer._id,
-      name: customer.name,
-    },
+    // customerRef: {
+    //   _id: customer._id,
+    //   name: customer.name,
+    // },
+    role: req.body.role,
   });
+  if (user.role !== 'admin') {
+    let customer = new Customer({
+      email: req.body.email,
+      name: req.body.name,
+    });
+    customer = await customer.save();
+  }
 
   //hash the password
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
 
-  user = await user.populate('customerRef', 'name');
+  //user = await user.populate('customerRef', 'name');
   user = await user.save();
+
   //console.log('here is the user', user);
 
   const token = user.generateAuthToken();

@@ -26,17 +26,17 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['admin', 'user'],
-    default: 'user',
+    enum: ['admin', 'customer'],
+    default: 'customer',
   },
   createdAt: {
     type: Date,
     default: Date.now,
   },
-  customerRef: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Customer',
-  },
+  // customerRef: {
+  //   type: mongoose.Schema.ObjectId,
+  //   ref: 'Customer',
+  // },
 });
 
 userSchema.methods.generateAuthToken = function () {
@@ -61,7 +61,8 @@ function validateUser(user) {
       .required(),
     name: Joi.string().min(3).required(),
     password: Joi.string().min(3).required(),
-    customerRef: Joi.string(),
+    role: Joi.string(),
+    // customerRef: Joi.string(),
   });
   return schema.validate(user);
 }

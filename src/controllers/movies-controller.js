@@ -46,6 +46,7 @@ const CreateMovie = async (req, res) => {
   if (!genre) return res.status(404).send('Genre with given id not found');
   let movie = new Movie({
     title: req.body.title,
+    slug: req.body.slug,
     genre: {
       _id: genre._id,
       name: genre.name,
@@ -68,6 +69,7 @@ const UpdateMovie = async (req, res) => {
     req.params.id,
     {
       title: req.body.title,
+      slug: req.body.slug,
       genre: {
         _id: genre._id,
         name: genre.name,

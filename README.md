@@ -160,3 +160,6 @@ State referes to the values that are managed by the component just like the vari
 <p>We Cannot directly pass the state from one component to another. We cannot even Pass the data from One Sibling to another Sibling Component.
 In order to Pass the data from one Component to another <strong>We lift the state up to the nearest parent</strong>. And then from the parent to the Sibling components we pass the data through the props.
 </p>
+
+<h2>What is Reducer?</h2>
+<p>Reducer is a function, that allows us to us to centralize the state updates in a component</p>

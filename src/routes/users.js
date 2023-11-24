@@ -9,7 +9,8 @@ const router = express.Router();
 
 // route to get the current user
 router.get('/me', auth, async (req, res) => {
-  const user = await User.findById(req.user._id).select('-password');
+  let user = await User.findById(req.user._id).select('-password');
+  user = await user.populate('profile');
   res.status(201).send(user);
   console.log(user);
 });
@@ -28,38 +29,38 @@ router.post('/', async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
   if (user)
     return res.status(400).send('user with the given email already exists');
-  // let customer = await Customer.findById(req.body.customerRef);
-  // if (!customer)
-  //   return res.status(404).send('Customer with given id not found');
 
-  // create the user...
+  // create the user credentials...
   user = new User({
     email: req.body.email,
     name: req.body.name,
     password: req.body.password,
-    // customerRef: {
-    //   _id: customer._id,
-    //   name: customer.name,
-    // },
     role: req.body.role,
   });
+
+  // Create the customer as well
+  let customer = null;
+
   if (user.role !== 'admin') {
-    let customer = new Customer({
+    customer = new Customer({
       email: req.body.email,
       name: req.body.name,
     });
+
     customer = await customer.save();
+
+    // Set the customer reference in the user's profile field
+    user.profile = customer._id;
   }
 
   //hash the password
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
 
-  //user = await user.populate('customerRef', 'name');
+  user = await user.populate('profile');
   user = await user.save();
 
-  //console.log('here is the user', user);
-
+  //generate the token and send the response to the user along with the token
   const token = user.generateAuthToken();
   res.status(201).header('x-auth-token', token).send({ user, token });
 });

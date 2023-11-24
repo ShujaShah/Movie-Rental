@@ -29,14 +29,14 @@ const userSchema = new mongoose.Schema({
     enum: ['admin', 'customer'],
     default: 'customer',
   },
+  profile: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Customer',
+  },
   createdAt: {
     type: Date,
     default: Date.now,
   },
-  // customerRef: {
-  //   type: mongoose.Schema.ObjectId,
-  //   ref: 'Customer',
-  // },
 });
 
 userSchema.methods.generateAuthToken = function () {
@@ -62,6 +62,7 @@ function validateUser(user) {
     name: Joi.string().min(3).required(),
     password: Joi.string().min(3).required(),
     role: Joi.string(),
+    profile: Joi.string(),
     // customerRef: Joi.string(),
   });
   return schema.validate(user);

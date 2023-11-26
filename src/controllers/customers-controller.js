@@ -29,16 +29,17 @@ const UpdateCustomer = async (req, res) => {
   let customer = await Customer.findByIdAndUpdate(
     req.params.id,
     {
-      name: req.body.name,
-      email: req.body.email,
-      phone: req.body.phone,
-      isGold: req.body.isGold,
+      name: req.body?.name,
+      email: req.body?.email,
+      phone: req.body?.phone,
+      isGold: req.body?.isGold,
     },
     { new: true }
   );
   if (!customer)
     res.status(404).send('Customer with the given id not found...');
   res.status(201).send(customer);
+  console.log(customer);
 };
 
 //Deleting a Customer

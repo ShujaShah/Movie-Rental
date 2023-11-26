@@ -4,7 +4,7 @@ const Joi = require('joi');
 const CustomerSchema = new mongoose.Schema({
   email: {
     type: String,
-    required: true,
+    //required: true,
     minlength: 5,
     maxlength: 50,
     lowercase: true,
@@ -12,7 +12,7 @@ const CustomerSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    required: true,
+    //required: true,
     minlength: 3,
     maxlength: 50,
   },
@@ -31,9 +31,8 @@ function validateCustomer(customer) {
   const schema = Joi.object({
     email: Joi.string()
       .email({ minDomainSegments: 2, tlds: { allow: ['com', 'in'] } })
-      .min(5)
-      .required(),
-    name: Joi.string().min(3).required(),
+      .min(5),
+    name: Joi.string().min(3),
     phone: Joi.number().min(6),
     isGold: Joi.boolean(),
   });

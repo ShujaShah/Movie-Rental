@@ -2,6 +2,7 @@ const express = require('express');
 const { Rental, validateRental } = require('../models/entities/rental');
 const { Movie } = require('../models/entities/movie');
 const { Customer } = require('../models/entities/customer');
+const mongoose = require('mongoose');
 
 //Getting all the rentals
 const GetRentals = async (req, res) => {
@@ -72,9 +73,30 @@ const GetRental = async (req, res) => {
   ).populate('movie', 'title genre');
   res.status(201).send(rental);
 };
+
+//Getting rental by customer
+const CustomerRental = async (req, res) => {
+  const customerId = req.params.id;
+
+  if (!customerId)
+    return res.status(404).send('Customer with the given id not found');
+
+  // Find rentals by customer ID
+  const rentals = await Rental.find({ customer: customerId })
+    .populate('customer', 'name email')
+    .populate('movie', 'title genre movieBanner dailyRentalRate');
+
+  if (!rentals || rentals.length === 0) {
+    return res.status(404).send('No rentals found for the given customer ID');
+  }
+
+  res.status(200).send(rentals);
+};
+
 module.exports = {
   GetRentals,
   CreateRental,
   DeleteRental,
   GetRental,
+  CustomerRental,
 };

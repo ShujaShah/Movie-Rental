@@ -163,3 +163,17 @@ In order to Pass the data from one Component to another <strong>We lift the stat
 
 <h2>What is Reducer?</h2>
 <p>Reducer is a function, that allows us to us to centralize the state updates in a component</p>
+
+<h2>What are Side Effects?</h2>
+<p><b>The Primary Tasks of React are :</b>
+<ul>
+	<li>Work with the DOM/Browser to render UI to the page </li>
+	<li>Manage state for us between the render cycles (i.e., state renders are remembered from one render to another) </li>
+	<li>Keep the UI updated whenever state change occurs</li>
+</ul>
+<b>The tasks which React cannot handle are: </b> 
+	<ul>
+		<li><b>Side Effects:</b>Anything that lives outside the React application e.g., Access to local Storage, API/ Database interaction, Subscriptions e.g., (web sockets), Syncing two different internal states together</li>
+	</ul>
+<i>So Side Effects are basically anything react is not incharge of.</i>
+</p>

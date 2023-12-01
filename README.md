@@ -177,3 +177,15 @@ In order to Pass the data from one Component to another <strong>We lift the stat
 	</ul>
 <i>So Side Effects are basically anything react is not incharge of.</i>
 </p>
+
+<h2>What is useEffect or Effect Hook</h2>
+<p>It is a hook provided by React, that allows us to perform <b>Side Effects</b> i.e, allows us to interact with outside API's or local storage</p>
+<p> useEffect has two parameters: <i> one parameter is a Required parameter which is a callback function, where we put our sideeffect code and another one is optional parameter </i></p>
+<b>syntax:</b> 
+
+```
+	useEffect(()=>{
+		// function
+	},[])
+ ```
+Any code that we put within the useEffect function is guaranteed to run after the component has rendered.

@@ -10,7 +10,9 @@ const GetRentals = async (req, res) => {
     .sort('-dateOut')
     .populate('customer')
     .populate('movie');
-  res.status(201).send(rentals);
+
+  let RentalsCount = await Rental.countDocuments();
+  res.status(201).json({ rentals, RentalsCount });
 };
 
 //Creating a Rental

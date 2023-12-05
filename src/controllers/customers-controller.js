@@ -5,7 +5,8 @@ const { Customer, validateCustomer } = require('../models/entities/customer');
 const GetCustomers = async (req, res) => {
   const customer = await Customer.find();
   if (!customer) return res.status('400').send('No customer added...');
-  res.status(201).send(customer);
+  let CustomersCount = await Customer.countDocuments();
+  res.status(201).json({ customer, CustomersCount });
 };
 
 //Create a Customer

@@ -34,7 +34,6 @@ const GetMovies = async (req, res) => {
   } else {
     movieCount = await Movie.countDocuments();
   }
-
   res.status(200).json({ movies, movieCount });
 };
 

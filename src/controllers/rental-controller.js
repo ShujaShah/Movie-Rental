@@ -6,7 +6,10 @@ const mongoose = require('mongoose');
 
 //Getting all the rentals
 const GetRentals = async (req, res) => {
-  const rentals = await Rental.find().sort('-dateOut');
+  const rentals = await Rental.find()
+    .sort('-dateOut')
+    .populate('customer')
+    .populate('movie');
   res.status(201).send(rentals);
 };
 

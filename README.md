@@ -163,3 +163,35 @@ In order to Pass the data from one Component to another <strong>We lift the stat
 
 <h2>What is Reducer?</h2>
 <p>Reducer is a function, that allows us to us to centralize the state updates in a component</p>
+
+<h2>What are Side Effects?</h2>
+<p><b>The Primary Tasks of React are :</b>
+<ul>
+	<li>Work with the DOM/Browser to render UI to the page </li>
+	<li>Manage state for us between the render cycles (i.e., state renders are remembered from one render to another) </li>
+	<li>Keep the UI updated whenever state change occurs</li>
+</ul>
+<b>The tasks which React cannot handle are: </b> 
+	<ul>
+		<li><b>Side Effects:</b>Anything that lives outside the React application e.g., Access to local Storage, API/ Database interaction, Subscriptions e.g., (web sockets), Syncing two different internal states together</li>
+	</ul>
+<i>So Side Effects are basically anything react is not incharge of.</i>
+</p>
+
+<h2>What is useEffect or Effect Hook?</h2>
+<p>It is a hook provided by React, that allows us to perform <b>Side Effects</b> i.e, allows us to interact with outside API's or local storage</p>
+<p> useEffect has two parameters: <i> one parameter is a Required parameter which is a callback function, where we put our sideeffect code and another one is optional parameter </i></p>
+<b>syntax:</b> 
+
+```
+	useEffect(()=>{
+		// function
+	},[])
+ ```
+Any code that we put within the useEffect function is guaranteed to run after the component has rendered.
+
+<h2>What is Strict Mode?</h2>
+<p>
+StrictMode is a tool for highlighting potential problems in an application. Like Fragment, StrictMode does not render any visible UI. It activates additional checks and warnings for its descendants.
+<i><strong>Note:</strong>strong> Strict mode checks are run in development mode only; they do not impact the production build</i>.
+</p>

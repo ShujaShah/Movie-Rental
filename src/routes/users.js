@@ -22,6 +22,14 @@ router.get('/', admin, async (req, res) => {
   res.status(201).send(users);
 });
 
+// route to delete a user
+router.delete('/:id', admin, async (req, res) => {
+  let user = await User.findByIdAndRemove(req.params.id);
+  if (!user) return res.status(404).send('No user with the given id found...');
+  console.log('here is the user id', req.params.id);
+  res.status(201).send(user);
+});
+
 // route to create a user
 router.post('/', async (req, res) => {
   const { error } = validateUser(req.body);

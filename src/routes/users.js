@@ -15,6 +15,27 @@ router.get('/me', auth, async (req, res) => {
   console.log(user);
 });
 
+// route to update the users
+
+router.patch('/:id', auth, async (req, res) => {
+  let user = await User.findByIdAndUpdate(
+    req.params.id,
+    {
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+    },
+    { new: true }
+  );
+  if (!user) res.status(404).send('user not found...');
+  res.status(201).send(user);
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(user.password, salt);
+
+  user = await user.populate('profile');
+  user = await user.save();
+});
+
 // route to get all the users
 router.get('/', admin, async (req, res) => {
   const users = await User.find();

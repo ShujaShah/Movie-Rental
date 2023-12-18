@@ -67,7 +67,7 @@ const UpdateMovie = async (req, res) => {
   let movie = await Movie.findByIdAndUpdate(
     req.params.id,
     {
-      title: req.body.title,
+      title: req?.body.title,
       slug: req.body.slug,
       genre: {
         _id: genre._id,

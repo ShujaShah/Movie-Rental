@@ -16,7 +16,7 @@ router.get('/', GetMovies);
 router.post('/', CreateMovie);
 
 //Updating a Movie
-router.put('/:id', UpdateMovie);
+router.patch('/:id', UpdateMovie);
 
 //Deleting a Movie
 router.delete('/:id', DeleteMovie);

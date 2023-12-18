@@ -29,6 +29,7 @@ router.patch('/:id', auth, async (req, res) => {
   );
   if (!user) res.status(404).send('user not found...');
   res.status(201).send(user);
+  console.log('here is the user:', user);
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
 

@@ -9,7 +9,7 @@ const GetCustomers = async (req, res) => {
   res.status(201).json({ customer, CustomersCount });
 };
 
-//Create a Customer
+//Creating a Customer
 const CreateCustomer = async (req, res) => {
   const { error } = validateCustomer(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -23,7 +23,7 @@ const CreateCustomer = async (req, res) => {
   res.status(201).send(customer);
 };
 
-//Update Customer
+//Updating Customer
 const UpdateCustomer = async (req, res) => {
   const { error } = validateCustomer(req.body);
   if (error) return res.status(400).send(error.details[0].message);

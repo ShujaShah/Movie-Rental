@@ -23,7 +23,7 @@ const CreateCustomer = async (req, res) => {
   res.status(201).send(customer);
 };
 
-//Updating Customer
+//Updating a Customer
 const UpdateCustomer = async (req, res) => {
   const { error } = validateCustomer(req.body);
   if (error) return res.status(400).send(error.details[0].message);

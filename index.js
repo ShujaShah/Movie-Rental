@@ -40,8 +40,9 @@ app.use('/api/auth', AuthRouter);
 //app.use(ErrorHandler);
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Connected to port ${port}`);
 });
 
+module.exports = server;
 //test commit

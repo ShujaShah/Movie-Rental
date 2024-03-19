@@ -1,0 +1,4 @@
+{
+  "jwtPrivateKey": "somekey",
+  "db": "mongodb://localhost/movie-rental_test"
+}

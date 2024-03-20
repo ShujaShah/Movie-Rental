@@ -1,5 +1,6 @@
 const express = require('express');
 const { Genre, validateGenre } = require('../models/entities/genre');
+const { default: mongoose } = require('mongoose');
 
 //Get All Genres
 const GetGenres = async (req, res) => {
@@ -42,6 +43,10 @@ const DeleteGenre = async (req, res) => {
 //Getting a single Genre
 const GetGenre = async (req, res) => {
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(404).send('Invalid ID');
+    }
+
     const genre = await Genre.findById(req.params.id);
     if (!genre)
       return res.status(404).send('Genre with the given id not found');

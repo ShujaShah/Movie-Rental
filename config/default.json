@@ -1,4 +1,5 @@
 {
   "jwtPrivateKey": "anotherkey",
-  "db": "mongodb+srv://shuja:shuja@cluster0.dn2hzu3.mongodb.net/?retryWrites=true&w=majority&ssl=true"
+
+  "db": "mongodb+srv://shuja:shuja@cluster0.dn2hzu3.mongodb.net/"
 }

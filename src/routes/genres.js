@@ -3,6 +3,7 @@ const auth = require('../middlewares/auth');
 const admin = require('../middlewares/admin');
 
 const router = express.Router();
+const validateObjectId = require('../middlewares/validateObjectId');
 
 const {
   GetGenre,
@@ -25,6 +26,6 @@ router.put('/:id', UpdateGenre);
 router.delete('/:id', [auth, admin], DeleteGenre);
 
 //Getting a single genre
-router.get('/:id', GetGenre);
+router.get('/:id', validateObjectId, GetGenre);
 
 module.exports = router;

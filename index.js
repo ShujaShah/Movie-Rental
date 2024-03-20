@@ -21,8 +21,8 @@ app.use(express.json());
 app.use(morgan('tiny'));
 let mongo_url = process.env.MONGO_URL;
 
-winston.add(new winston.transports.File({ filename: 'logfile.log' }));
-winston.add(new winston.transports.MongoDB({ db: mongo_url, level: 'error' }));
+// winston.add(new winston.transports.File({ filename: 'logfile.log' }));
+// winston.add(new winston.transports.MongoDB({ db: mongo_url, level: 'error' }));
 
 app.use(
   cors({

@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 mongoose
-  .connect(
-    'mongodb+srv://shuja:shuja@cluster0.dn2hzu3.mongodb.net/?retryWrites=true&w=majority&ssl=true'
-  )
+  .connect('mongodb+srv://shuja:shuja@cluster0.dn2hzu3.mongodb.net/')
   .then(() => console.log('Connected to the Database...'))
   .catch((err) => console.log('Error connecting the database', err));
 const courseSchema = new mongoose.Schema({
